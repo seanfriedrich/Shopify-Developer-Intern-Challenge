@@ -15,8 +15,8 @@ class Searcher:
             # loop over the rows in the index
             for row in reader:
                 # parse out the image ID and features, then compute the
-                # chi-squared distance between the features in our index
-                # and our query features
+                # chi-squared distance between the features in the index
+                # and the query features
                 features = [float(x) for x in row[1:]]
                 d = self.chi2_distance(features, queryFeatures)
                 # now that we have the distance between the two feature
@@ -27,7 +27,7 @@ class Searcher:
                 results[row[0]] = d
             # close the reader
             f.close()
-        # sort our results, so that the smaller distances (i.e. the
+        # sort the results, so that the smaller distances (i.e. the
         # more relevant images are at the front of the list)
         results = sorted([(v, k) for (k, v) in results.items()])
         # return our (limited) results
